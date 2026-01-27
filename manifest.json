@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Flaggy",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Shows a flag in the toolbar indicating the country where the current website is hosted",
   "homepage_url": "https://github.com/jnylen/flaggy",
   "background": {
@@ -24,7 +24,11 @@
   "permissions": ["tabs", "dns", "https://api.ip.sb/*"],
   "browser_specific_settings": {
     "gecko": {
-      "id": "flaggy@jnylen.nu"
+      "id": "flaggy@jnylen.nu",
+      "data_collection_permissions": {
+        "required": ["browsingActivity"],
+        "optional": []
+      }
     }
   }
 }
