@@ -3,6 +3,7 @@
   "name": "Flaggy",
   "version": "1.1.0",
   "description": "Shows a flag in the toolbar indicating the country where the current website is hosted",
+  "homepage_url": "https://github.com/jnylen/flaggy",
   "background": {
     "scripts": ["background.js"]
   },
@@ -21,7 +22,6 @@
     "default_popup": "popup.html"
   },
   "permissions": ["tabs", "dns", "https://api.ip.sb/*"],
-  "license": "MIT",
   "browser_specific_settings": {
     "gecko": {
       "id": "flaggy@jnylen.nu"

@@ -1,6 +1,7 @@
 # Generated files
 flaggy-*.xpi
 web-ext-artifacts/
+sources.zip
 
 # OS files
 .DS_Store

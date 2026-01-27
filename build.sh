@@ -20,6 +20,6 @@ if [ -n "$AMO_API_KEY" ] && [ -n "$AMO_API_SECRET" ]; then
         --api-key "$AMO_API_KEY" \
         --api-secret "$AMO_API_SECRET" \
         --artifacts-dir web-ext-artifacts \
-        --channel listed
+        --channel unlisted
     echo "Signed XPI available in web-ext-artifacts/"
 fi
