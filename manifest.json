@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "Flaggy",
+  "version": "1.0",
+  "description": "Shows a flag in the toolbar indicating the country where the current website is hosted",
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
+    },
+    "default_title": "Flaggy",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["tabs", "dns", "https://api.ip.sb/*"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "flaggy@jnylen.nu"
+    }
+  }
+}

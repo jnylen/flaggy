@@ -1,0 +1,50 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install -g web-ext
+
+      - name: Build XPI
+        run: |
+          cd geoip-extension
+          VERSION=$(python3 -c "import json; print(json.load(open('manifest.json'))['version'])")
+          zip -r "../flaggy-v${VERSION}.xpi" .
+
+      - name: Sign XPI
+        if: ${{ secrets.AMO_API_KEY != '' && secrets.AMO_API_SECRET != '' }}
+        run: |
+          cd geoip-extension
+          web-ext sign \
+            --source-dir . \
+            --api-key "${{ secrets.AMO_API_KEY }}" \
+            --api-secret "${{ secrets.AMO_API_SECRET }}" \
+            --channel unlisted \
+            --artifacts-dir web-ext-artifacts
+
+      - name: Get version
+        id: version
+        run: echo "VERSION=$(python3 -c "import json; print(json.load(open('geoip-extension/manifest.json'))['version'])")" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            flaggy-v${{ steps.version.outputs.VERSION }}.xpi
+            web-ext-artifacts/*.xpi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
