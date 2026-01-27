@@ -26,13 +26,19 @@ jobs:
           zip -r "../flaggy-v${VERSION}.xpi" .
 
       - name: Sign XPI
-        if: ${{ secrets.AMO_API_KEY != '' && secrets.AMO_API_SECRET != '' }}
+        env:
+          AMO_API_KEY: ${{ secrets.AMO_API_KEY }}
+          AMO_API_SECRET: ${{ secrets.AMO_API_SECRET }}
         run: |
+          if [ -z "$AMO_API_KEY" ] || [ -z "$AMO_API_SECRET" ]; then
+            echo "Skipping sign step - AMO_API_KEY or AMO_API_SECRET not set"
+            exit 0
+          fi
           cd geoip-extension
           web-ext sign \
             --source-dir . \
-            --api-key "${{ secrets.AMO_API_KEY }}" \
-            --api-secret "${{ secrets.AMO_API_SECRET }}" \
+            --api-key "$AMO_API_KEY" \
+            --api-secret "$AMO_API_SECRET" \
             --artifacts-dir web-ext-artifacts \
             --ignore-files build.sh .github web-ext-artifacts
 
