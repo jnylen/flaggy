@@ -19,12 +19,7 @@ jobs:
       - name: Install dependencies
         run: npm install -g web-ext
 
-      - name: Build XPI
-        run: |
-          VERSION=$(python3 -c "import json; print(json.load(open('manifest.json'))['version'])")
-          zip -r "flaggy-v${VERSION}.xpi" manifest.json background.js popup.html popup.js popup.css icons/*.png flags/*.png
-
-      - name: Sign XPI
+      - name: Build and Sign XPI
         env:
           AMO_API_KEY: ${{ secrets.AMO_API_KEY }}
           AMO_API_SECRET: ${{ secrets.AMO_API_SECRET }}
@@ -33,12 +28,8 @@ jobs:
             echo "Skipping sign step - AMO_API_KEY or AMO_API_SECRET not set"
             exit 0
           fi
-          web-ext sign \
-            --source-dir . \
-            --api-key "$AMO_API_KEY" \
-            --api-secret "$AMO_API_SECRET" \
-            --artifacts-dir web-ext-artifacts \
-            --ignore-files build.sh .github web-ext-artifacts
+          
+          ./build.sh
 
       - name: Get version
         id: version
