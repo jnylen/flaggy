@@ -1,5 +1,7 @@
 # Flaggy
 
+![Logo of Flaggy.](https://raw.githubusercontent.com/jnylen/flaggy/refs/heads/main/logo.png)
+
 A Firefox extension that shows the country flag of the current website's hosting location in the toolbar.
 
 ## Features
@@ -13,7 +15,7 @@ A Firefox extension that shows the country flag of the current website's hosting
 
 ### From GitHub Releases
 
-1. Download the latest `.xpi` file from the [Releases page](https://github.com/yourusername/flaggy/releases)
+1. Download the latest `.xpi` file from the [Releases page](https://github.com/jnylen/flaggy/releases)
 2. Open Firefox and go to `about:addons`
 3. Click the gear icon → "Install Add-on From File"
 4. Select the downloaded `.xpi` file
@@ -21,13 +23,13 @@ A Firefox extension that shows the country flag of the current website's hosting
 ### From Source
 
 1. Clone the repository
-2. Run `./geoip-extension/build.sh` to build the XPI
+2. Run `./flaggy/build.sh` to build the XPI
 3. Install the generated XPI as above
 
 ## Building
 
 ```bash
-cd geoip-extension
+cd flaggy
 ./build.sh
 ```
 
