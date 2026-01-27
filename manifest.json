@@ -21,6 +21,7 @@
     "default_popup": "popup.html"
   },
   "permissions": ["tabs", "dns", "https://api.ip.sb/*"],
+  "custom_license": "LICENSE",
   "browser_specific_settings": {
     "gecko": {
       "id": "flaggy@jnylen.nu"

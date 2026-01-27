@@ -9,7 +9,7 @@ XPI_NAME="flaggy-v${VERSION}.xpi"
 
 echo "Building XPI..."
 rm -f "$XPI_NAME"
-zip -r "$XPI_NAME" manifest.json background.js popup.html popup.js popup.css icons/*.png flags/*.png
+zip -r "$XPI_NAME" manifest.json background.js popup.html popup.js popup.css LICENSE icons/*.png flags/*.png
 
 echo "XPI created: $XPI_NAME"
 
@@ -20,7 +20,6 @@ if [ -n "$AMO_API_KEY" ] && [ -n "$AMO_API_SECRET" ]; then
         --api-key "$AMO_API_KEY" \
         --api-secret "$AMO_API_SECRET" \
         --artifacts-dir web-ext-artifacts \
-        --channel listed \ 
-        --ignore-files build.sh .github web-ext-artifacts
+        --channel listed
     echo "Signed XPI available in web-ext-artifacts/"
 fi
