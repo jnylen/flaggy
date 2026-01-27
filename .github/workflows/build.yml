@@ -21,9 +21,8 @@ jobs:
 
       - name: Build XPI
         run: |
-          cd geoip-extension
           VERSION=$(python3 -c "import json; print(json.load(open('manifest.json'))['version'])")
-          zip -r "../flaggy-v${VERSION}.xpi" .
+          zip -r "flaggy-v${VERSION}.xpi" manifest.json background.js popup.html popup.js popup.css icons/*.png flags/*.png
 
       - name: Sign XPI
         env:
@@ -34,7 +33,6 @@ jobs:
             echo "Skipping sign step - AMO_API_KEY or AMO_API_SECRET not set"
             exit 0
           fi
-          cd geoip-extension
           web-ext sign \
             --source-dir . \
             --api-key "$AMO_API_KEY" \
@@ -44,7 +42,7 @@ jobs:
 
       - name: Get version
         id: version
-        run: echo "VERSION=$(python3 -c "import json; print(json.load(open('geoip-extension/manifest.json'))['version'])")" >> $GITHUB_OUTPUT
+        run: echo "VERSION=$(python3 -c "import json; print(json.load(open('manifest.json'))['version'])")" >> $GITHUB_OUTPUT
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
