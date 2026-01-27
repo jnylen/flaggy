@@ -39,7 +39,7 @@ jobs:
           sourceCode: sources.zip
           channel: listed
           releaseNotes: ${{ github.event.release.body }}
-          license: MIT
+          metaDataFile: amo_metadata.json
           apiKey: ${{ secrets.AMO_API_KEY }}
           apiSecret: ${{ secrets.AMO_API_SECRET }}
           timeout: 900000
