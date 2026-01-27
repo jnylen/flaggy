@@ -1,0 +1,45 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install -g web-ext
+
+      - name: Build and Sign XPI
+        env:
+          AMO_API_KEY: ${{ secrets.AMO_API_KEY }}
+          AMO_API_SECRET: ${{ secrets.AMO_API_SECRET }}
+        run: |
+          if [ -z "$AMO_API_KEY" ] || [ -z "$AMO_API_SECRET" ]; then
+            echo "Skipping sign step - AMO_API_KEY or AMO_API_SECRET not set"
+            exit 0
+          fi
+          
+          ./build.sh
+
+      - name: Get version
+        id: version
+        run: echo "VERSION=$(python3 -c "import json; print(json.load(open('manifest.json'))['version'])")" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            flaggy-v${{ steps.version.outputs.VERSION }}.xpi
+            web-ext-artifacts/*.xpi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
