@@ -19,7 +19,6 @@ if [ -n "$AMO_API_KEY" ] && [ -n "$AMO_API_SECRET" ]; then
         --source-dir . \
         --api-key "$AMO_API_KEY" \
         --api-secret "$AMO_API_SECRET" \
-        --channel unlisted \
         --artifacts-dir web-ext-artifacts \
         --ignore-files build.sh .github web-ext-artifacts
     echo "Signed XPI available in web-ext-artifacts/"
