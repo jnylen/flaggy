@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Flaggy",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Shows a flag in the toolbar indicating the country where the current website is hosted",
   "background": {
     "scripts": ["background.js"]
