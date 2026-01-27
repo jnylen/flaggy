@@ -9,7 +9,7 @@ XPI_NAME="flaggy-v${VERSION}.xpi"
 
 echo "Building XPI..."
 rm -f "$XPI_NAME"
-zip -r "$XPI_NAME" manifest.json background.js popup.html popup.js popup.css LICENSE icons/*.png flags/*.png
+zip -r "$XPI_NAME" manifest.json background.js popup.html popup.js popup.css icons/*.png flags/*.png
 
 echo "XPI created: $XPI_NAME"
 
