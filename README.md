@@ -37,7 +37,7 @@ This creates `flaggy-v{version}.xpi`.
 
 ## API
 
-Uses [ip.sb](https://ip.sb) for IP geolocation data and [circle-flags](https://github.com/HatScripts/circle-flags) for flag icons.
+Uses [geocode.sh](https://geocode.sh) for IP geolocation data and [circle-flags](https://github.com/HatScripts/circle-flags) for flag icons.
 
 ## License
 
