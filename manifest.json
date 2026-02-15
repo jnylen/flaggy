@@ -21,7 +21,7 @@
     "default_title": "Flaggy",
     "default_popup": "popup.html"
   },
-  "permissions": ["tabs", "dns", "https://api.ip.sb/*"],
+  "permissions": ["tabs", "dns", "https://geocode.sh/*"],
   "browser_specific_settings": {
     "gecko": {
       "id": "flaggy@jnylen.nu",

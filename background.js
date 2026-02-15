@@ -12,7 +12,7 @@ async function getGeoData(tabId, hostname) {
     }
 
     const ip = dnsResult.addresses[0];
-    const response = await fetch(`https://api.ip.sb/geoip/${ip}`);
+    const response = await fetch(`https://geocode.sh/api/ip?ip=${ip}`);
     if (!response.ok) {
       throw new Error('API request failed');
     }
