@@ -12,22 +12,12 @@ async function getGeoData(tabId, hostname) {
     }
 
     const ip = dnsResult.addresses[0];
-    const response = await fetch(`https://geocode.sh/api/ip?ip=${ip}`);
+    const response = await fetch(geoipUrl(ip));
     if (!response.ok) {
       throw new Error('API request failed');
     }
     const data = await response.json();
-
-    const geoInfo = {
-      ip: data.ip || ip,
-      country: data.country || 'Unknown',
-      country_code: data.country_code || '',
-      city: data.city || 'Unknown',
-      isp: data.isp || 'Unknown',
-      organization: data.organization || 'Unknown',
-      asn: data.asn || 'Unknown',
-      timezone: data.timezone || 'Unknown'
-    };
+    const geoInfo = mapGeoResponse(data, ip);
 
     geoCache.set(tabId, geoInfo);
     return geoInfo;

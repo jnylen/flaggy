@@ -1,12 +1,13 @@
 {
   "manifest_version": 2,
   "name": "Flaggy",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "Shows a flag in the toolbar indicating the country where the current website is hosted",
   "homepage_url": "https://github.com/jnylen/flaggy",
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["geoip.js", "background.js"]
   },
+
   "icons": {
     "16": "icons/icon-16.png",
     "48": "icons/icon-48.png",
@@ -21,7 +22,8 @@
     "default_title": "Flaggy",
     "default_popup": "popup.html"
   },
-  "permissions": ["tabs", "dns", "https://geocode.sh/*"],
+  "permissions": ["tabs", "dns", "https://api.ip.sb/*"],
+
   "browser_specific_settings": {
     "gecko": {
       "id": "flaggy@jnylen.nu",
